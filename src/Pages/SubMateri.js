@@ -39,6 +39,11 @@ export default class SubMateri extends Component {
             sortType: "basic"
           },
           {
+            Header: "Format",
+            accessor: "format",
+            sortType: "basic"
+          },
+          {
             Header: "Action",
             accessor: "id",
             Cell: ({ row }) => (
@@ -75,7 +80,8 @@ export default class SubMateri extends Component {
     inputNama: "",
     inputGaya: "",
     inputKeterangan: "",
-    inputUrl: ""
+    inputUrl: "",
+    inputFormat: ""
   };
 
   onChangeNama = event => {
@@ -99,6 +105,12 @@ export default class SubMateri extends Component {
   onChangeUrl = event => {
     this.setState({
       inputUrl: event.target.value
+    });
+  };
+
+  onChangeFormat = event => {
+    this.setState({
+      inputFormat: event.target.value
     });
   };
 
@@ -146,7 +158,8 @@ export default class SubMateri extends Component {
       id_materi: this.state.idMateri,
       nama: this.state.inputNama,
       keterangan: this.state.inputKeterangan,
-      url: this.state.inputUrl
+      url: this.state.inputUrl,
+      format: this.state.inputFormat
     });
 
     const requestOptions = {
@@ -192,7 +205,8 @@ export default class SubMateri extends Component {
       id_materi: this.state.idMateri,
       keterangan: this.state.inputKeterangan,
       nama: this.state.inputNama,
-      url: this.state.inputUrl
+      url: this.state.inputUrl,
+      format: this.state.inputFormat
     });
 
     const requestOptions = {
@@ -222,7 +236,8 @@ export default class SubMateri extends Component {
       inputNama: data.nama,
       inputGaya: data.id_gaya_belajar,
       inputKeterangan: data.keterangan,
-      inputUrl: data.url
+      inputUrl: data.url,
+      inputFormat: data.format
     });
   };
 
@@ -232,7 +247,8 @@ export default class SubMateri extends Component {
       inputNama: "",
       inputGaya: "",
       inputKeterangan: "",
-      inputUrl: ""
+      inputUrl: "",
+      inputFormat: ""
     });
   };
 
@@ -297,13 +313,22 @@ export default class SubMateri extends Component {
                   id="keterangan"
                 />
 
-                <label htmlFor="url">Url Video Materi</label>
+                <label htmlFor="url">Url Materi</label>
                 <input
                   value={this.state.inputUrl}
                   onChange={this.onChangeUrl}
                   type="text"
                   className="form-control mb-3"
                   id="url"
+                />
+
+                <label htmlFor="format">Format Materi</label>
+                <input
+                  value={this.state.inputFormat}
+                  onChange={this.onChangeFormat}
+                  type="text"
+                  className="form-control mb-3"
+                  id="format"
                 />
 
                 {this.state.edit ? (
